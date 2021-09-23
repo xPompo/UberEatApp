@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Platform, SafeAreaView } from "react-native";
+import { Platform, SafeAreaView, StatusBar } from "react-native";
 import HeaderTab from "../Components/HeaderTab";
 import Search from "../Components/Search";
 import Categories from "../Components/Categories";
 import RestaurantItems from "../Components/RestaurantItems";
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [resturantData, setResturantData] = useState(null);
   const [activetab, setActiveTab] = useState("Delivery");
+
   useEffect(() => {
     getResturantsData();
   }, [activetab]);
@@ -31,15 +32,20 @@ export default function Home() {
     <SafeAreaView
       style={{
         width: "100%",
+        backgroundColor: "white",
         alignItems: "center",
         justifyContent: "center",
-        paddingTop: Platform.OS === "android" ? 50 : 0,
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
       }}
     >
       <HeaderTab activetab={activetab} setActiveTab={setActiveTab} />
       <Search />
       <Categories />
-      <RestaurantItems resturantData={resturantData} activetab={activetab} />
+      <RestaurantItems
+        resturantData={resturantData}
+        activetab={activetab}
+        navigation={navigation}
+      />
     </SafeAreaView>
   );
 }

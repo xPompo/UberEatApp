@@ -2,11 +2,25 @@ import React from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-export default function RestaurantItems({ resturantData, activetab }) {
+export default function RestaurantItems(props) {
+  const { resturantData, activetab, navigation } = props;
   const filteredData = resturantData?.filter((el) =>
     el.transactions.includes(activetab.toLowerCase())
   );
-  console.log(filteredData);
+
+  console.log(navigation);
+  const getDetails = (id, name, image, price, reviews, rating, categories) => {
+    navigation.navigate("details", {
+      id,
+      name,
+      image,
+      price,
+      reviews,
+      rating,
+      categories,
+    });
+  };
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -17,20 +31,35 @@ export default function RestaurantItems({ resturantData, activetab }) {
     >
       {filteredData?.map((el, index) => {
         return (
-          <View
+          <TouchableOpacity
+            onPress={() =>
+              getDetails(
+                el?.id,
+                el?.name,
+                el?.image_url,
+                el?.price,
+                el?.review_count,
+                el?.rating,
+                el?.categories
+              )
+            }
+            activeOpacity={0.8}
             key={index}
-            style={{
-              width: "100%",
-              marginTop: 15,
-              elevation: 5,
-              shadowOffset: { width: 5, height: 5 },
-              shadowColor: "black",
-              shadowOpacity: 0.5,
-            }}
           >
-            <RestImage image={el?.image_url} />
-            <RestTitle name={el?.name} rating={el?.rating} />
-          </View>
+            <View
+              style={{
+                width: "100%",
+                marginTop: 15,
+                elevation: 5,
+                shadowOffset: { width: 5, height: 5 },
+                shadowColor: "black",
+                shadowOpacity: 0.5,
+              }}
+            >
+              <RestImage image={el?.image_url} />
+              <RestTitle name={el?.name} rating={el?.rating} />
+            </View>
+          </TouchableOpacity>
         );
       })}
     </ScrollView>

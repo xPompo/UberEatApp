@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import Nav from "./Naviagtion/Nav";
+import MainNav from "./Naviagtion/Nav";
 
 export default function App() {
   return (
     <>
-      <Nav />
+      <MainNav />
       <StatusBar style="auto" />
     </>
   );
