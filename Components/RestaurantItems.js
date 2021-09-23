@@ -3,7 +3,7 @@ import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 export default function RestaurantItems({ resturantData, activetab }) {
-  const filteredData = resturantData.filter((el) =>
+  const filteredData = resturantData?.filter((el) =>
     el.transactions.includes(activetab.toLowerCase())
   );
   console.log(filteredData);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View } from "react-native";
+import { Platform, SafeAreaView } from "react-native";
 import HeaderTab from "../Components/HeaderTab";
 import Search from "../Components/Search";
 import Categories from "../Components/Categories";
@@ -28,13 +28,18 @@ export default function Home() {
 
   console.log(resturantData);
   return (
-    <View
-      style={{ width: "100%", alignItems: "center", justifyContent: "center" }}
+    <SafeAreaView
+      style={{
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingTop: Platform.OS === "android" ? 50 : 0,
+      }}
     >
       <HeaderTab activetab={activetab} setActiveTab={setActiveTab} />
       <Search />
       <Categories />
       <RestaurantItems resturantData={resturantData} activetab={activetab} />
-    </View>
+    </SafeAreaView>
   );
 }
