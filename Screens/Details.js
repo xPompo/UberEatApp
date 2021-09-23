@@ -2,6 +2,7 @@ import React from "react";
 import { View, StatusBar, Platform } from "react-native";
 import AboutUs from "../Components/AboutUs";
 import MenuItems from "../Components/MenuItems";
+import CartButton from "../Components/CartButton";
 
 export default function Details(props) {
   const id = props.route.params.id;
@@ -38,6 +39,7 @@ export default function Details(props) {
         categories={categories}
         reviews={reviews}
       />
+      <CartButton />
     </View>
   );
 }
