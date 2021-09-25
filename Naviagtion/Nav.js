@@ -6,6 +6,7 @@ import Home from "../Screens/Home";
 import Browse from "../Screens/Browse";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import Grocery from "../Screens/Grocery";
 import Orders from "../Screens/Orders";
 import Account from "../Screens/Account";
@@ -13,6 +14,7 @@ import Details from "../Screens/Details";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+
 function Nav() {
   return (
     <Tab.Navigator
@@ -93,7 +95,23 @@ const MainNav = () => {
         }}
       >
         <Stack.Screen name="mainHome" component={Nav} />
-        <Stack.Screen name="details" component={Details} />
+        <Stack.Screen
+          name="details"
+          component={Details}
+          options={({ navigation }) => ({
+            headerShown: true,
+            headerTitleAlign: "center",
+            headerLeft: () => {
+              return (
+                <Ionicons
+                  onPress={() => navigation.goBack()}
+                  name="chevron-back"
+                  size={20}
+                />
+              );
+            },
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

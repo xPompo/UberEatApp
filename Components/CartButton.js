@@ -1,14 +1,20 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Dimensions } from "react-native";
 import { useSelector } from "react-redux";
 
-export default function CartButton() {
+export default function CartButton(props) {
   const totalAmount = useSelector((state) => state.cartReducer.totalAmount);
-  console.log("total Amount is : " + totalAmount);
+  const { height } = Dimensions.get("window");
+
+  const viewCartHandler = () => {
+    props.navigation();
+  };
+
   return (
     <>
       {totalAmount !== 0 && (
         <TouchableOpacity
+          onPress={viewCartHandler}
           activeOpacity={0.8}
           style={{
             flex: 1,
@@ -18,7 +24,7 @@ export default function CartButton() {
             justifyContent: "center",
             alignItems: "center",
             position: "absolute",
-            top: "98%",
+            top: height * 0.8,
             zIndex: 999,
           }}
         >
@@ -43,7 +49,7 @@ export default function CartButton() {
                 fontSize: 12,
               }}
             >
-              $ {totalAmount}
+              $ {totalAmount.toFixed(1)}
             </Text>
           </View>
         </TouchableOpacity>

@@ -1,26 +1,30 @@
-import React from "react";
-
 const initialState = {
-  items: {},
-  resturantName: "",
-  totalAmount: 0.0,
+  items: [],
+  totalAmount: 0,
 };
 function reducer(state = initialState, action) {
   const addedProducts = action.payload;
   switch (action.type) {
     case "ADD_TO_CART": {
-      console.log(addedProducts);
+      if (state.items[addedProducts.tittle]) {
+        return {
+          ...state,
+        };
+      }
       return {
         ...state,
-        resturantName: addedProducts.tittle,
-        totalAmount: state.totalAmount + addedProducts.price,
+        items: [...state.items, { name: addedProducts.tittle }],
+        totalAmount: parseFloat(state.totalAmount + addedProducts.price),
       };
     }
     case "REMOVE_FROM_CART": {
+      const filterdData = state.items.filter(
+        (el) => el.name !== addedProducts.tittle
+      );
       return {
         ...state,
-        resturantName: addedProducts.tittle,
-        totalAmount: state.totalAmount - addedProducts.price,
+        items: filterdData,
+        totalAmount: parseFloat(state.totalAmount - addedProducts.price),
       };
     }
   }

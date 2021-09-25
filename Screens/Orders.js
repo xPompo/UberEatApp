@@ -1,10 +1,16 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Platform, StatusBar } from "react-native";
+import { useSelector } from "react-redux";
 
 export default function Orders() {
+  const totalAmount = useSelector((state) => state.cartReducer.totalAmount);
   return (
-    <View>
-      <Text>Orders</Text>
+    <View
+      style={{
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+      }}
+    >
+      <Text>Orders Amount {totalAmount}</Text>
     </View>
   );
 }

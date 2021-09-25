@@ -27,7 +27,7 @@ export default function Home({ navigation }) {
       .then((json) => setResturantData(json.businesses));
   };
 
-  console.log(resturantData);
+  // console.log(resturantData);
   return (
     <SafeAreaView
       style={{

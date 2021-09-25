@@ -8,7 +8,7 @@ export default function RestaurantItems(props) {
     el.transactions.includes(activetab.toLowerCase())
   );
 
-  console.log(navigation);
+  // console.log(navigation);
   const getDetails = (id, name, image, price, reviews, rating, categories) => {
     navigation.navigate("details", {
       id,

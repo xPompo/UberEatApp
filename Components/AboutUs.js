@@ -9,7 +9,6 @@ export default function AboutUs(props) {
     <View
       style={{
         width: "100%",
-        marginTop: 15,
         elevation: 5,
         shadowOffset: { width: 5, height: 5 },
         shadowColor: "black",
