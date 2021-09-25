@@ -13,15 +13,12 @@ export default function Details(props) {
   const price = props.route.params.price;
   const categories = props.route.params.categories;
   console.log(props);
-  const onPressHandler = () => {
-    props.navigation.navigate("Orders");
-  };
 
   return (
     <View
       style={{
+        flex: 1,
         width: "100%",
-        // paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         justifyContent: "center",
         alignItems: "center",
       }}
@@ -43,7 +40,8 @@ export default function Details(props) {
         categories={categories}
         reviews={reviews}
       />
-      <CartButton navigation={onPressHandler} />
+
+      <CartButton navigation={props.navigation} name={name} />
     </View>
   );
 }

@@ -13,7 +13,10 @@ function reducer(state = initialState, action) {
       }
       return {
         ...state,
-        items: [...state.items, { name: addedProducts.tittle }],
+        items: [
+          ...state.items,
+          { name: addedProducts.tittle, price: addedProducts.price },
+        ],
         totalAmount: parseFloat(state.totalAmount + addedProducts.price),
       };
     }
