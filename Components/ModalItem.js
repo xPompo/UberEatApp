@@ -17,7 +17,7 @@ export default function ModalItem(props) {
       items: Arrayfood,
       resturanName: name,
     });
-    navigation.navigate("Orders");
+    navigation.navigate("Orders", { Arrayfood, totalAmount, name });
     setIsModalVisible(false);
   };
 
@@ -48,7 +48,7 @@ export default function ModalItem(props) {
           </View>
           {Arrayfood.map((el, index) => (
             <View key={index} style={styles.foodItemsContainer}>
-              <Text style={styles.foodItemName}>{el.name}</Text>
+              <Text style={styles.foodItemName}>{el.tittle}</Text>
               <Text style={styles.foodItemPrice}>{el.price} $</Text>
             </View>
           ))}

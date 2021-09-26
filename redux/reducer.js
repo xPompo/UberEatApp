@@ -1,5 +1,6 @@
 const initialState = {
   items: [],
+  resturanName: "",
   totalAmount: 0,
 };
 function reducer(state = initialState, action) {
@@ -15,8 +16,13 @@ function reducer(state = initialState, action) {
         ...state,
         items: [
           ...state.items,
-          { name: addedProducts.tittle, price: addedProducts.price },
+          {
+            tittle: addedProducts.tittle,
+            price: addedProducts.price,
+            image: addedProducts.image,
+          },
         ],
+        resturanName: addedProducts.name,
         totalAmount: parseFloat(state.totalAmount + addedProducts.price),
       };
     }
@@ -27,6 +33,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         items: filterdData,
+        resturanName: addedProducts.name,
         totalAmount: parseFloat(state.totalAmount - addedProducts.price),
       };
     }
