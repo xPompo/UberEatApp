@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StatusBar, Platform } from "react-native";
+import { View } from "react-native";
 import AboutUs from "../Components/AboutUs";
 import MenuItems from "../Components/MenuItems";
 import CartButton from "../Components/CartButton";
