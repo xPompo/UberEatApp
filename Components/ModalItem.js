@@ -2,6 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import firebase from "../firebase";
+import { LogBox } from "react-native";
+LogBox.ignoreLogs(["Setting a timer"]);
 
 export default function ModalItem(props) {
   const { isModalVisible, setIsModalVisible, totalAmount, name, navigation } =
