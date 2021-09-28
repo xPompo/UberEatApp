@@ -1,28 +1,52 @@
 import React from "react";
-import firebase from "firebase";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StatusBar,
+  StyleSheet,
+} from "react-native";
 import { Formik } from "formik";
-import MainButtonsContainer from "../Components/MainButtonsContainer";
-import { View, StatusBar, Text, TouchableOpacity } from "react-native";
+import * as Yup from "yup";
+import firebase from "firebase";
 import TextInputComp from "../Components/TextInputComp";
 
-export default function SignUp({ navigation, isActive, setIsActive }) {
-  const auth = firebase.auth();
-  const SignUpWithFirebase = (values) => {
+import MainButtonsContainer from "../Components/MainButtonsContainer";
+
+export default function Login({ navigation, isActive, setIsActive }) {
+  const onLoginHandler = (values) => {
+    const auth = firebase.auth();
     auth
-      .createUserWithEmailAndPassword(values.email, values.password)
-      .then(() => navigation.navigate("mainHome", { screen: "Home" }))
-      .catch((error) => {
+      .signInWithEmailAndPassword(values.email, values.password)
+      .catch(function (error) {
         // Handle Errors here.
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        if (errorCode == "auth/weak-password") {
-          alert("The password is too weak.");
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode === "auth/wrong-password") {
+          alert("Wrong password.");
         } else {
           alert(errorMessage);
         }
         console.log(error);
       });
+    if (error) {
+      return;
+    } else {
+      navigation.navigate("mainHome", { screen: "Home" });
+    }
   };
+
+  const validate = Yup.object({
+    email: Yup.string().email("Invalid email address").required("Required"),
+    password: Yup.string()
+      .max(12, "no More Please hh")
+      .min(6, "Too Weak Man")
+      .required("Required"),
+  });
+
+  //   const navigationHandler = () => {
+  //     navigation.navigate("SignUp");
+  //   };
 
   return (
     <View
@@ -38,13 +62,19 @@ export default function SignUp({ navigation, isActive, setIsActive }) {
       <Formik
         initialValues={{
           email: "",
-          username: "",
           password: "",
-          confirmPassword: "",
         }}
-        onSubmit={(values) => SignUpWithFirebase(values)}
+        onSubmit={(values) => onLoginHandler(values)}
+        validationSchema={validate}
       >
-        {({ handleChange, handleBlur, handleSubmit, values }) => (
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          touched,
+          errors,
+        }) => (
           <View
             style={{
               width: "100%",
@@ -52,16 +82,6 @@ export default function SignUp({ navigation, isActive, setIsActive }) {
               alignItems: "center",
             }}
           >
-            <TextInputComp
-              secure={false}
-              type="username"
-              textInputLabel="user name:"
-              placeHolder="your name:"
-              textInputValue="username"
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              values={values.username}
-            />
             <TextInputComp
               secure={false}
               type="emailAddress"
@@ -72,6 +92,13 @@ export default function SignUp({ navigation, isActive, setIsActive }) {
               handleBlur={handleBlur}
               values={values.email}
             />
+            {touched.email && errors.email ? (
+              <View style={styles.errContainer}>
+                <Text style={styles.err}>{errors.email}</Text>
+              </View>
+            ) : (
+              <></>
+            )}
 
             <TextInputComp
               secure={true}
@@ -83,16 +110,14 @@ export default function SignUp({ navigation, isActive, setIsActive }) {
               handleBlur={handleBlur}
               values={values.password}
             />
-            <TextInputComp
-              secure={true}
-              type="password"
-              textInputLabel="Confirm Password:"
-              placeHolder="confirm password:"
-              textInputValue="confirmPassword"
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              values={values.confirmPassword}
-            />
+            {touched.password && errors.password ? (
+              <View style={styles.errContainer}>
+                <Text style={styles.err}>{errors.password}</Text>
+              </View>
+            ) : (
+              <></>
+            )}
+
             <TouchableOpacity onPress={handleSubmit} activeOpacity={0.5}>
               <View
                 style={{
@@ -105,7 +130,7 @@ export default function SignUp({ navigation, isActive, setIsActive }) {
                 }}
               >
                 <Text style={{ color: "white", fontWeight: "bold" }}>
-                  SignUp
+                  LogIn
                 </Text>
               </View>
             </TouchableOpacity>
@@ -115,3 +140,12 @@ export default function SignUp({ navigation, isActive, setIsActive }) {
     </View>
   );
 }
+const styles = StyleSheet.create({
+  errContainer: {
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    width: "90%",
+    marginLeft: 20,
+  },
+  err: { color: "red", fontSize: 12, marginBottom: 10 },
+});

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -10,6 +10,7 @@ import Orders from "../Screens/Orders";
 import Account from "../Screens/Account";
 import Details from "../Screens/Details";
 import SignUp from "../Screens/SignUp";
+import Login from "../Screens/Login";
 import Browse from "../Screens/Browse";
 import Grocery from "../Screens/Grocery";
 import OrdersFake from "../Screens/OrdersFake";
@@ -88,17 +89,35 @@ function Nav() {
   );
 }
 const MainNav = () => {
+  const [isActive, setIsActive] = useState("Login");
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="SignUp"
+        initialRouteName="Login"
         screenOptions={{
           headerShown: false,
         }}
       >
         <Stack.Screen name="mainHome" component={Nav} />
         <Stack.Screen name="Orders" component={Orders} />
-        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="SignUp">
+          {(props) => {
+            return (
+              <SignUp
+                {...props}
+                isActive={isActive}
+                setIsActive={setIsActive}
+              />
+            );
+          }}
+        </Stack.Screen>
+        <Stack.Screen name="Login">
+          {(props) => {
+            return (
+              <Login {...props} isActive={isActive} setIsActive={setIsActive} />
+            );
+          }}
+        </Stack.Screen>
 
         <Stack.Screen
           name="details"

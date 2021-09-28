@@ -20,24 +20,25 @@ export default function TextInputComp(props) {
         alignItems: "flex-start",
       }}
     >
-      <Text
+      {/* <Text
         style={{
           marginBottom: 5,
           paddingLeft: 10,
         }}
       >
         {textInputLabel}
-      </Text>
+      </Text> */}
       <TextInput
         style={{
-          backgroundColor: "rgba(22,22,22,.3)",
-          marginBottom: 15,
+          borderBottomColor: "#888",
+          borderBottomWidth: 1,
+          marginBottom: 5,
           width: "100%",
           paddingLeft: 10,
           borderRadius: 50,
           height: 35,
         }}
-        placeholderTextColor="white"
+        placeholderTextColor="#888"
         textContentType={type}
         secureTextEntry={secure}
         placeholder={`${placeHolder}`}
