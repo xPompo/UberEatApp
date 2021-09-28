@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StatusBar,
   StyleSheet,
+  Dimensions,
 } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -14,6 +15,7 @@ import TextInputComp from "../Components/TextInputComp";
 import MainButtonsContainer from "../Components/MainButtonsContainer";
 
 export default function Login({ navigation, isActive, setIsActive }) {
+  const { width } = Dimensions.get("window");
   const onLoginHandler = (values) => {
     const auth = firebase.auth();
     auth
@@ -44,21 +46,22 @@ export default function Login({ navigation, isActive, setIsActive }) {
       .required("Required"),
   });
 
-  //   const navigationHandler = () => {
-  //     navigation.navigate("SignUp");
-  //   };
-
   return (
-    <View
-      style={{
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-      }}
-    >
+    <View style={styles.container}>
       <MainButtonsContainer
         navigation={navigation}
         isActive={isActive}
         setIsActive={setIsActive}
       />
+      <View style={styles.headerTitleContainer}>
+        <View style={styles.titleWrapper}>
+          <Text style={styles.title}>Hello </Text>
+          <Text style={styles.titleBold}>Beautiful,</Text>
+        </View>
+        <Text style={styles.subtitle}>
+          Enter your information below ,Email adress and Password.
+        </Text>
+      </View>
       <Formik
         initialValues={{
           email: "",
@@ -86,7 +89,7 @@ export default function Login({ navigation, isActive, setIsActive }) {
               secure={false}
               type="emailAddress"
               textInputLabel="Email Adress:"
-              placeHolder="email adress:"
+              placeHolder="Email Adress:"
               textInputValue="email"
               handleChange={handleChange}
               handleBlur={handleBlur}
@@ -104,7 +107,7 @@ export default function Login({ navigation, isActive, setIsActive }) {
               secure={true}
               type="password"
               textInputLabel="Password:"
-              placeHolder="password:"
+              placeHolder="Password:"
               textInputValue="password"
               handleChange={handleChange}
               handleBlur={handleBlur}
@@ -119,19 +122,8 @@ export default function Login({ navigation, isActive, setIsActive }) {
             )}
 
             <TouchableOpacity onPress={handleSubmit} activeOpacity={0.5}>
-              <View
-                style={{
-                  width: 160,
-                  height: 35,
-                  borderRadius: 50,
-                  backgroundColor: "black",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ color: "white", fontWeight: "bold" }}>
-                  LogIn
-                </Text>
+              <View style={styles.loginButtonContainer}>
+                <Text style={styles.loginButton}>LogIn</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -141,11 +133,44 @@ export default function Login({ navigation, isActive, setIsActive }) {
   );
 }
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    width: "100%",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
   errContainer: {
     justifyContent: "flex-start",
     alignItems: "flex-start",
     width: "90%",
-    marginLeft: 20,
+    marginLeft: 50,
   },
-  err: { color: "red", fontSize: 12, marginBottom: 10 },
+  err: { color: "red", fontSize: 12, marginTop: 10 },
+  headerTitleContainer: { width: "90%", marginVertical: 80 },
+  titleWrapper: { flexDirection: "row" },
+  title: { color: "black", fontSize: 45 },
+  titleBold: { color: "black", fontSize: 45, fontWeight: "bold" },
+  subtitle: {
+    color: "#777",
+    fontSize: 16,
+    letterSpacing: 0.2,
+    lineHeight: 25,
+    width: "85%",
+    marginBottom: 10,
+  },
+  loginButtonContainer: {
+    width: 280,
+    height: 45,
+    borderRadius: 50,
+    marginTop: 25,
+    backgroundColor: "black",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  loginButton: {
+    color: "white",
+    fontWeight: "bold",
+  },
 });

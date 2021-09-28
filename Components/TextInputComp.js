@@ -30,15 +30,15 @@ export default function TextInputComp(props) {
       </Text> */}
       <TextInput
         style={{
-          borderBottomColor: "#888",
+          borderBottomColor: "#555",
           borderBottomWidth: 1,
-          marginBottom: 5,
+          marginTop: 25,
           width: "100%",
-          paddingLeft: 10,
+          paddingLeft: 20,
+          paddingVertical: 10,
           borderRadius: 50,
-          height: 35,
         }}
-        placeholderTextColor="#888"
+        placeholderTextColor="#aaa"
         textContentType={type}
         secureTextEntry={secure}
         placeholder={`${placeHolder}`}
