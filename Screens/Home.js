@@ -5,7 +5,7 @@ import Search from "../Components/Search";
 import Categories from "../Components/Categories";
 import RestaurantItems from "../Components/RestaurantItems";
 
-export default function Home({ navigation }) {
+export default function Home({ navigation, ...props }) {
   const [resturantData, setResturantData] = useState(null);
   const [activetab, setActiveTab] = useState("Delivery");
 
@@ -27,7 +27,6 @@ export default function Home({ navigation }) {
       .then((json) => setResturantData(json.businesses));
   };
 
-  // console.log(resturantData);
   return (
     <SafeAreaView
       style={{

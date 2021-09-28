@@ -3,14 +3,16 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Home from "../Screens/Home";
-import Browse from "../Screens/Browse";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Grocery from "../Screens/Grocery";
 import Orders from "../Screens/Orders";
 import Account from "../Screens/Account";
 import Details from "../Screens/Details";
+import SignUp from "../Screens/SignUp";
+import Browse from "../Screens/Browse";
+import Grocery from "../Screens/Grocery";
+import OrdersFake from "../Screens/OrdersFake";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -18,7 +20,6 @@ const Stack = createNativeStackNavigator();
 function Nav() {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
       activeColor="tomato"
       inactiveColor="#888"
       barStyle={{
@@ -49,7 +50,7 @@ function Nav() {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Browse"
         component={Browse}
         options={{
@@ -74,15 +75,15 @@ function Nav() {
         }}
       />
       <Tab.Screen
-        name="Orders"
-        component={Orders}
+        name="OrdersFake"
+        component={OrdersFake}
         options={{
-          tabBarLabel: "Orders",
+          tabBarLabel: "OrdersFake",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="ticket" color={color} size={26} />
           ),
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 }
@@ -90,11 +91,15 @@ const MainNav = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
+        initialRouteName="SignUp"
         screenOptions={{
           headerShown: false,
         }}
       >
         <Stack.Screen name="mainHome" component={Nav} />
+        <Stack.Screen name="Orders" component={Orders} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+
         <Stack.Screen
           name="details"
           component={Details}

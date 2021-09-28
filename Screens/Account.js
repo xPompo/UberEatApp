@@ -1,10 +1,14 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Platform, StatusBar } from "react-native";
 
 export default function RestaurantDetail() {
   return (
-    <View>
-      <Text>RestaurantDetail.js</Text>
+    <View
+      style={{
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+      }}
+    >
+      <Text>Account Details</Text>
     </View>
   );
 }

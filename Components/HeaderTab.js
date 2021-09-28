@@ -23,7 +23,7 @@ export default function HeaderTab({ activetab, setActiveTab }) {
     </View>
   );
 }
-const HeaderButton = ({ text, activetab, setActiveTab }) => {
+export const HeaderButton = ({ text, activetab, setActiveTab }) => {
   return (
     <TouchableOpacity
       activeOpacity={1}
