@@ -32,7 +32,7 @@ export default function TextInputComp(props) {
         style={{
           borderBottomColor: "#555",
           borderBottomWidth: 1,
-          marginTop: 25,
+          marginTop: 15,
           width: "100%",
           paddingLeft: 20,
           paddingVertical: 10,
