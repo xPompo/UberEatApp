@@ -10,8 +10,9 @@ export default function MainButtonsContainer({
   return (
     <View
       style={{
+        width: "100%",
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
       }}
     >

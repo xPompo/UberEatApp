@@ -16,7 +16,7 @@ export default function Button({ text, isActive, setIsActive, navigation }) {
           borderBottomWidth: 1.5,
           borderRadius: 1,
           borderBottomColor: isActive === text ? "black" : "#999",
-          marginLeft: 20,
+          marginHorizontal: 20,
         }}
       >
         <Text

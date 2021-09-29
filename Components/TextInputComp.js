@@ -15,7 +15,7 @@ export default function TextInputComp(props) {
   return (
     <View
       style={{
-        width: "90%",
+        width: "100%",
         justifyContent: "flex-start",
         alignItems: "flex-start",
       }}

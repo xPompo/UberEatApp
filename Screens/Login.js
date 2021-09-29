@@ -5,37 +5,31 @@ import {
   TouchableOpacity,
   StatusBar,
   StyleSheet,
-  Dimensions,
+  Image,
 } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import firebase from "firebase";
 import TextInputComp from "../Components/TextInputComp";
-
 import MainButtonsContainer from "../Components/MainButtonsContainer";
 
 export default function Login({ navigation, isActive, setIsActive }) {
-  const { width } = Dimensions.get("window");
   const onLoginHandler = (values) => {
     const auth = firebase.auth();
     auth
       .signInWithEmailAndPassword(values.email, values.password)
-      .catch(function (error) {
+      .catch((error) => {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         if (errorCode === "auth/wrong-password") {
-          alert("Wrong password.");
+          alert("Wrong password Please Try again.");
+        } else if (error) {
+          return alert(errorMessage);
         } else {
-          alert(errorMessage);
+          return navigation.navigate("mainHome", { screen: "Home" });
         }
-        console.log(error);
       });
-    if (error) {
-      return;
-    } else {
-      navigation.navigate("mainHome", { screen: "Home" });
-    }
   };
 
   const validate = Yup.object({
@@ -53,6 +47,14 @@ export default function Login({ navigation, isActive, setIsActive }) {
         isActive={isActive}
         setIsActive={setIsActive}
       />
+
+      <Image
+        style={{ width: 300, height: 150, resizeMode: "cover", marginTop: 20 }}
+        source={{
+          uri: "https://www.pngall.com/wp-content/uploads/2/Meal-PNG-Image-File.png",
+        }}
+      />
+
       <View style={styles.headerTitleContainer}>
         <View style={styles.titleWrapper}>
           <Text style={styles.title}>Hello </Text>
@@ -67,7 +69,10 @@ export default function Login({ navigation, isActive, setIsActive }) {
           email: "",
           password: "",
         }}
-        onSubmit={(values) => onLoginHandler(values)}
+        onSubmit={(values, { resetForm }) => {
+          onLoginHandler(values);
+          resetForm({ values: "" });
+        }}
         validationSchema={validate}
       >
         {({
@@ -148,7 +153,7 @@ const styles = StyleSheet.create({
     marginLeft: 50,
   },
   err: { color: "red", fontSize: 12, marginTop: 10 },
-  headerTitleContainer: { width: "90%", marginVertical: 80 },
+  headerTitleContainer: { width: "90%", marginBottom: 20, marginTop: 30 },
   titleWrapper: { flexDirection: "row" },
   title: { color: "black", fontSize: 45 },
   titleBold: { color: "black", fontSize: 45, fontWeight: "bold" },
@@ -164,7 +169,7 @@ const styles = StyleSheet.create({
     width: 280,
     height: 45,
     borderRadius: 50,
-    marginTop: 25,
+    marginTop: 50,
     backgroundColor: "black",
     justifyContent: "center",
     alignItems: "center",
