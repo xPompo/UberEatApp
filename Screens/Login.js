@@ -24,11 +24,14 @@ export default function Login({ navigation, isActive, setIsActive }) {
         var errorMessage = error.message;
         if (errorCode === "auth/wrong-password") {
           alert("Wrong password Please Try again.");
-        } else if (error) {
-          return alert(errorMessage);
+          return;
         } else {
-          return navigation.navigate("mainHome", { screen: "Home" });
+          alert(errorMessage);
+          return;
         }
+      })
+      .then(() => {
+        navigation.navigate("mainHome", { screen: "Home" });
       });
   };
 
@@ -49,7 +52,7 @@ export default function Login({ navigation, isActive, setIsActive }) {
       />
 
       <Image
-        style={{ width: 300, height: 150, resizeMode: "cover", marginTop: 20 }}
+        style={styles.image}
         source={{
           uri: "https://www.pngall.com/wp-content/uploads/2/Meal-PNG-Image-File.png",
         }}
@@ -61,7 +64,7 @@ export default function Login({ navigation, isActive, setIsActive }) {
           <Text style={styles.titleBold}>Beautiful,</Text>
         </View>
         <Text style={styles.subtitle}>
-          Enter your information below ,Email adress and Password.
+          Find the best resturants close to your location.
         </Text>
       </View>
       <Formik
@@ -138,6 +141,7 @@ export default function Login({ navigation, isActive, setIsActive }) {
   );
 }
 const styles = StyleSheet.create({
+  // main container
   container: {
     flex: 1,
     backgroundColor: "white",
@@ -146,17 +150,22 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
   },
+  // errors styles
   errContainer: {
     justifyContent: "flex-start",
     alignItems: "flex-start",
     width: "90%",
-    marginLeft: 50,
+    marginLeft: 10,
   },
   err: { color: "red", fontSize: 12, marginTop: 10 },
+  // image styles
+  image: { width: 300, height: 150, resizeMode: "cover", marginTop: 20 },
+  // big text styles
   headerTitleContainer: { width: "90%", marginBottom: 20, marginTop: 30 },
   titleWrapper: { flexDirection: "row" },
   title: { color: "black", fontSize: 45 },
   titleBold: { color: "black", fontSize: 45, fontWeight: "bold" },
+  // subtitle styles
   subtitle: {
     color: "#777",
     fontSize: 16,
@@ -165,6 +174,7 @@ const styles = StyleSheet.create({
     width: "85%",
     marginBottom: 10,
   },
+  //login button styles
   loginButtonContainer: {
     width: 280,
     height: 45,
