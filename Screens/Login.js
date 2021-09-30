@@ -15,23 +15,28 @@ import MainButtonsContainer from "../Components/MainButtonsContainer";
 
 export default function Login({ navigation, isActive, setIsActive }) {
   const onLoginHandler = (values) => {
-    const auth = firebase.auth();
-    auth
+    firebase
+      .auth()
       .signInWithEmailAndPassword(values.email, values.password)
       .catch((error) => {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        const errorCode = error.code;
+        const errorMessage = error.message;
         if (errorCode === "auth/wrong-password") {
           alert("Wrong password Please Try again.");
-          return;
         } else {
           alert(errorMessage);
-          return;
         }
       })
-      .then(() => {
-        navigation.navigate("mainHome", { screen: "Home" });
+      .then((userCredential) => {
+        const user = userCredential?.user.providerData[0];
+        console.log(user);
+
+        if (user) {
+          navigation.navigate("mainHome", {
+            screen: "Home",
+            params: { user: user.displayName },
+          });
+        }
       });
   };
 

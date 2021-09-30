@@ -4,8 +4,9 @@ import HeaderTab from "../Components/HeaderTab";
 import Search from "../Components/Search";
 import Categories from "../Components/Categories";
 import RestaurantItems from "../Components/RestaurantItems";
+import WelcomeUser from "../Components/WelcomeUser";
 
-export default function Home({ navigation, ...props }) {
+export default function Home({ navigation, route, ...props }) {
   const [resturantData, setResturantData] = useState(null);
   const [activetab, setActiveTab] = useState("Delivery");
 
@@ -37,6 +38,7 @@ export default function Home({ navigation, ...props }) {
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
       }}
     >
+      <WelcomeUser route={route} navigation={navigation} />
       <HeaderTab activetab={activetab} setActiveTab={setActiveTab} />
       <Search />
       <Categories />

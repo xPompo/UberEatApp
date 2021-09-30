@@ -25,6 +25,19 @@ export default function SignUp({ navigation, isActive, setIsActive }) {
         } else {
           alert(errorMessage);
         }
+      })
+      .then(async (userCredential) => {
+        const user = userCredential?.user.providerData[0];
+        const update = {
+          displayName: values.username,
+        };
+        await firebase.auth().currentUser.updateProfile(update);
+        if (user) {
+          navigation.navigate("mainHome", {
+            screen: "Home",
+            params: { user: user.displayName },
+          });
+        }
       });
   };
 
