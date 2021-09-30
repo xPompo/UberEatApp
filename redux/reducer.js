@@ -1,17 +1,12 @@
 const initialState = {
   items: [],
-  resturanName: "",
   totalAmount: 0,
 };
+
 function reducer(state = initialState, action) {
   const addedProducts = action.payload;
   switch (action.type) {
     case "ADD_TO_CART": {
-      if (state.items[addedProducts.tittle]) {
-        return {
-          ...state,
-        };
-      }
       return {
         ...state,
         items: [
@@ -22,19 +17,20 @@ function reducer(state = initialState, action) {
             image: addedProducts.image,
           },
         ],
-        resturanName: addedProducts.name,
-        totalAmount: parseFloat(state.totalAmount + addedProducts.price),
+        totalAmount:
+          (state.totalAmount * 100 + addedProducts.price * 100) / 100,
       };
     }
+
     case "REMOVE_FROM_CART": {
-      const filterdData = state.items.filter(
-        (el) => el.name !== addedProducts.tittle
-      );
+      const filterdData = state.items.filter((el) => {
+        return el.tittle !== addedProducts.tittle;
+      });
       return {
         ...state,
         items: filterdData,
-        resturanName: addedProducts.name,
-        totalAmount: parseFloat(state.totalAmount - addedProducts.price),
+        totalAmount:
+          (state.totalAmount * 100 - addedProducts.price * 100) / 100,
       };
     }
   }

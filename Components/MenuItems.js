@@ -14,7 +14,6 @@ export default function MenuItems(props) {
       dispatch({
         type: "ADD_TO_CART",
         payload: {
-          ...item,
           tittle: item.tittle,
           price: item.price,
           image: item.image,
@@ -24,7 +23,6 @@ export default function MenuItems(props) {
       dispatch({
         type: "REMOVE_FROM_CART",
         payload: {
-          ...item,
           tittle: item.tittle,
           price: item.price,
           image: item.image,

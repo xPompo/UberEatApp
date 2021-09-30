@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 
 export default function WelcomeUser(props) {
-  const user = props.route.params.user;
+  const user = props.route.params?.user;
   return (
     <View
       style={{

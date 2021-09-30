@@ -34,7 +34,7 @@ const RestImage = (props) => {
     <View>
       <Image
         source={{
-          uri: props.image,
+          uri: props?.image,
         }}
         style={{ width: "100%", height: 150, resizeMode: "cover" }}
       />
@@ -65,7 +65,7 @@ const RestTitle = (props) => {
         >
           <Text
             style={{ fontSize: 12, color: "#888", paddingHorizontal: 4 }}
-          >{`${props.price}. ${props.categories[0].alias} . ${props.categories[0].title} (${props.reviews}+).`}</Text>
+          >{`${props.price}. ${props.categories[0]?.alias} . ${props.categories[0]?.title} (${props.reviews}+).`}</Text>
           <AntDesign
             name="star"
             size={12}
