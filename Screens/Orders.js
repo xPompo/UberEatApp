@@ -11,13 +11,17 @@ import MenuItems from "../Components/MenuItems";
 import LottieView from "lottie-react-native";
 import { Colors } from "../Constant/Colors";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import { useSelector } from "react-redux";
 
 export default function Orders(props) {
-  const arrayFood = props.route.params?.Arrayfood;
-  const total = props.route.params?.totalAmount;
-  const name = props.route.params?.name;
-  console.log(arrayFood);
+  const arrayFood = useSelector((state) => state.cartReducer.items);
+  const total = useSelector((state) => state.cartReducer.totalAmount);
+  const name = useSelector((state) => state.cartReducer.resturantName);
 
+  console.log(arrayFood);
+  const goHomeHandler = () => {
+    props.navigation.navigate("Home");
+  };
   return (
     <>
       {arrayFood ? (
@@ -74,6 +78,21 @@ export default function Orders(props) {
               style={{ height: 150, backgroundColor: "transparent" }}
             />
           </View>
+          <TouchableOpacity activeOpacity={0.8} onPress={goHomeHandler}>
+            <View
+              style={{
+                backgroundColor: `${Colors.main}`,
+                width: 60,
+                height: 60,
+                borderRadius: 10,
+                justifyContent: "center",
+                alignItems: "center",
+                marginVertical: 30,
+              }}
+            >
+              <AntDesign name="home" size={30} color="white" />
+            </View>
+          </TouchableOpacity>
         </View>
       ) : (
         <NoOrdersComp {...props} />
@@ -136,8 +155,6 @@ const NoOrdersComp = (props) => {
         <View
           style={{
             backgroundColor: `${Colors.main}`,
-            // paddingHorizontal: 40,
-            // paddingVertical: 10,
             width: 100,
             height: 100,
             borderRadius: 10,

@@ -1,6 +1,7 @@
 const initialState = {
   items: [],
   totalAmount: 0,
+  resturantName: "",
 };
 
 function reducer(state = initialState, action) {
@@ -19,6 +20,7 @@ function reducer(state = initialState, action) {
         ],
         totalAmount:
           (state.totalAmount * 100 + addedProducts.price * 100) / 100,
+        resturantName: addedProducts.resturanName,
       };
     }
 
@@ -31,6 +33,7 @@ function reducer(state = initialState, action) {
         items: filterdData,
         totalAmount:
           (state.totalAmount * 100 - addedProducts.price * 100) / 100,
+        resturantName: addedProducts.resturanName,
       };
     }
   }

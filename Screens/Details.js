@@ -60,7 +60,7 @@ export default function Details(props) {
         categories={categories}
         reviews={reviews}
       />
-      <MenuItems hideCheckBox={false} arrayFood={arrayFood} />
+      <MenuItems hideCheckBox={false} arrayFood={arrayFood} name={name} />
 
       <CartButton navigation={props.navigation} name={name} />
     </View>

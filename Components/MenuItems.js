@@ -5,7 +5,7 @@ import { Divider } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function MenuItems(props) {
-  const { arrayFood, hideCheckBox } = props;
+  const { arrayFood, hideCheckBox, name } = props;
   const dispatch = useDispatch();
 
   const checkFoodHandler = (item, check) => {
@@ -17,6 +17,7 @@ export default function MenuItems(props) {
           tittle: item.tittle,
           price: item.price,
           image: item.image,
+          resturanName: name,
         },
       });
     } else {
@@ -26,6 +27,7 @@ export default function MenuItems(props) {
           tittle: item.tittle,
           price: item.price,
           image: item.image,
+          resturanName: name,
         },
       });
     }

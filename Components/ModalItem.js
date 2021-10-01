@@ -18,7 +18,7 @@ export default function ModalItem(props) {
       items: Arrayfood,
       resturanName: name,
     });
-    navigation.navigate("Orders", { Arrayfood, totalAmount, name });
+    navigation.navigate("Orders", { totalAmount, name });
     setIsModalVisible(false);
   };
 
