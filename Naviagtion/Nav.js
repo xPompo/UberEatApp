@@ -11,9 +11,7 @@ import Account from "../Screens/Account";
 import Details from "../Screens/Details";
 import SignUp from "../Screens/SignUp";
 import Login from "../Screens/Login";
-import Browse from "../Screens/Browse";
-import Grocery from "../Screens/Grocery";
-import OrdersFake from "../Screens/OrdersFake";
+import { Colors } from "../Constant/Colors";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -22,10 +20,10 @@ function Nav() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      activeColor="tomato"
-      inactiveColor="#888"
+      activeColor="white"
+      inactiveColor="rgba(255,255,255,.4)"
       barStyle={{
-        backgroundColor: "#ddd",
+        backgroundColor: `${Colors.main}`,
       }}
     >
       <Tab.Screen
@@ -52,40 +50,6 @@ function Nav() {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="Browse"
-        component={Browse}
-        options={{
-          tabBarLabel: "Browse",
-          tabBarIcon: ({ color }) => (
-            <AntDesign name="search1" color={color} size={26} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Grocery"
-        component={Grocery}
-        options={{
-          tabBarLabel: "Grocery",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="shopping-outline"
-              color={color}
-              size={26}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="OrdersFake"
-        component={OrdersFake}
-        options={{
-          tabBarLabel: "OrdersFake",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="ticket" color={color} size={26} />
-          ),
-        }}
-      /> */}
     </Tab.Navigator>
   );
 }
@@ -94,6 +58,7 @@ const MainNav = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
+        // initialRouteName="Login"
         screenOptions={{
           headerShown: false,
         }}

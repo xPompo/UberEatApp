@@ -32,7 +32,7 @@ export default function MenuItems(props) {
   };
   const cartItems = useSelector((state) => state.cartReducer.items);
   const isFoodIn = (food, cartItems) => {
-    return Boolean(cartItems.find((item) => item.name === food.tittle));
+    return Boolean(cartItems.find((item) => item.tittle === food.tittle));
   };
 
   return (

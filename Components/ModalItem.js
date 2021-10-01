@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import firebase from "../firebase";
+import { Colors } from "../Constant/Colors";
 import { LogBox } from "react-native";
 LogBox.ignoreLogs(["Setting a timer"]);
 
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    backgroundColor: "#794",
+    backgroundColor: `${Colors.main}`,
     height: 40,
   },
   ResturanName: { color: "white", fontSize: 18, fontWeight: "bold" },
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 40,
     borderRadius: 5,
-    backgroundColor: "#794",
+    backgroundColor: `${Colors.main}`,
     textAlign: "center",
     textAlignVertical: "center",
   },

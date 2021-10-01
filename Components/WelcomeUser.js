@@ -1,12 +1,13 @@
 import React from "react";
 import { View, Text } from "react-native";
+import { Colors } from "../Constant/Colors";
 
 export default function WelcomeUser(props) {
   const user = props.route.params?.user;
   return (
     <View
       style={{
-        backgroundColor: "#549",
+        backgroundColor: `${Colors.main}`,
         height: 160,
         justifyContent: "center",
         width: "100%",
