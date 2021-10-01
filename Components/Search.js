@@ -17,6 +17,13 @@ export default function Search() {
     >
       <GooglePlacesAutocomplete
         placeholder="Search"
+        query={{
+          key: "AIzaSyA4i-MUmDzj-bJ3_eb_BLXplRi-D6oOGZU",
+          language: "en",
+        }}
+        onPress={(data) => {
+          console.log(data);
+        }}
         renderLeftButton={() => (
           <MaterialIcons name="place" size={24} style={{ marginLeft: 7 }} />
         )}
