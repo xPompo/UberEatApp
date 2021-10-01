@@ -24,7 +24,7 @@ export default function Orders(props) {
   };
   return (
     <>
-      {arrayFood ? (
+      {total !== 0 ? (
         <View
           style={{
             backgroundColor: "white",
