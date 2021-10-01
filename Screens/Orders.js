@@ -1,12 +1,21 @@
 import React from "react";
-import { View, Text, Platform, StatusBar, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Platform,
+  StatusBar,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import MenuItems from "../Components/MenuItems";
 import LottieView from "lottie-react-native";
+import { Colors } from "../Constant/Colors";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 export default function Orders(props) {
-  const arrayFood = props.route.params.Arrayfood;
-  const total = props.route.params.totalAmount;
-  const name = props.route.params.name;
+  const arrayFood = props.route.params?.Arrayfood;
+  const total = props.route.params?.totalAmount;
+  const name = props.route.params?.name;
   console.log(arrayFood);
 
   return (
@@ -67,8 +76,78 @@ export default function Orders(props) {
           </View>
         </View>
       ) : (
-        <Text>You Dont Make Any orders Yet</Text>
+        <NoOrdersComp {...props} />
       )}
     </>
   );
 }
+
+const NoOrdersComp = (props) => {
+  const goHomeHandler = () => {
+    props.navigation.navigate("Home");
+  };
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        backgroundColor: "white",
+      }}
+    >
+      <View
+        style={{
+          marginBottom: 50,
+          width: "80%",
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 33,
+            color: `${Colors.main}`,
+            fontWeight: "bold",
+            textTransform: "capitalize",
+          }}
+        >
+          You Dont Make Any orders Yet...
+        </Text>
+        <Text
+          style={{
+            marginTop: 5,
+            fontSize: 16,
+            color: `#888`,
+            width: "90%",
+            lineHeight: 25,
+            textTransform: "lowercase",
+          }}
+        >
+          Please make sure you make at least one order.
+        </Text>
+      </View>
+      <LottieView
+        source={require("../assets/animations/cartEmpty.json")}
+        speed={0.5}
+        autoPlay
+        style={{ width: 300, height: 150, marginBottom: 50 }}
+      />
+      <TouchableOpacity activeOpacity={0.8} onPress={goHomeHandler}>
+        <View
+          style={{
+            backgroundColor: `${Colors.main}`,
+            // paddingHorizontal: 40,
+            // paddingVertical: 10,
+            width: 100,
+            height: 100,
+            borderRadius: 10,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <AntDesign name="home" size={40} color="white" />
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
+};

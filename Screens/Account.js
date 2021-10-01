@@ -12,7 +12,7 @@ import { FlatList } from "react-native-gesture-handler";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 export default function RestaurantDetail({ navigation }) {
-  const displayName = firebase.auth().currentUser.displayName;
+  const displayName = firebase.auth().currentUser?.displayName;
   const RenderData = [
     { head: "Order History", iconName: "shoppingcart" },
     { head: "Discounts", iconName: "tagso" },
@@ -31,6 +31,8 @@ export default function RestaurantDetail({ navigation }) {
           .then(() => {
             navigation.navigate("Login");
           });
+      } else if (item.head === "Order History") {
+        navigation.navigate("Orders");
       }
     };
 

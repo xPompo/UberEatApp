@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import { Colors } from "../Constant/Colors";
 
 export default function HeaderTab({ activetab, setActiveTab }) {
   return (
@@ -8,6 +9,7 @@ export default function HeaderTab({ activetab, setActiveTab }) {
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+        marginVertical: 10,
       }}
     >
       <HeaderButton
@@ -33,8 +35,8 @@ export const HeaderButton = ({ text, activetab, setActiveTab }) => {
     >
       <Text
         style={{
-          backgroundColor: activetab === text ? "black" : "white",
-          color: activetab === text ? "white" : "black",
+          backgroundColor: activetab === text ? `${Colors.main}` : "white",
+          color: activetab === text ? "white" : `${Colors.main}`,
           paddingHorizontal: 30,
           paddingVertical: 10,
           borderRadius: 20,

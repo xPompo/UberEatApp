@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator();
 function Nav() {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      // initialRouteName="Home"
       activeColor="white"
       inactiveColor="rgba(255,255,255,.4)"
       barStyle={{
@@ -58,7 +58,7 @@ const MainNav = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        // initialRouteName="Login"
+        initialRouteName="Login"
         screenOptions={{
           headerShown: false,
         }}
