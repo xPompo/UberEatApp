@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import { Colors } from "../Constant/Colors";
 
 export default function Button({ text, isActive, setIsActive, navigation }) {
   const navHandler = () => {
@@ -15,13 +16,13 @@ export default function Button({ text, isActive, setIsActive, navigation }) {
           paddingVertical: 10,
           borderBottomWidth: 1.5,
           borderRadius: 1,
-          borderBottomColor: isActive === text ? "black" : "#999",
+          borderBottomColor: isActive === text ? `${Colors.main}` : "#999",
           marginHorizontal: 20,
         }}
       >
         <Text
           style={{
-            color: isActive === text ? "black" : "#999",
+            color: isActive === text ? `${Colors.main}` : "#999",
             fontSize: isActive === text ? 14 : 10,
             fontWeight: isActive === text ? "bold" : "normal",
           }}

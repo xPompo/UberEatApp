@@ -12,6 +12,7 @@ import * as Yup from "yup";
 import firebase from "firebase";
 import TextInputComp from "../Components/TextInputComp";
 import MainButtonsContainer from "../Components/MainButtonsContainer";
+import { Colors } from "../Constant/Colors";
 
 export default function Login({ navigation, isActive, setIsActive }) {
   const onLoginHandler = (values) => {
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
   headerTitleContainer: { width: "90%", marginBottom: 20, marginTop: 30 },
   titleWrapper: { flexDirection: "row" },
   title: { color: "black", fontSize: 45 },
-  titleBold: { color: "black", fontSize: 45, fontWeight: "bold" },
+  titleBold: { color: `${Colors.main}`, fontSize: 45, fontWeight: "bold" },
   // subtitle styles
   subtitle: {
     color: "#777",
@@ -185,7 +186,7 @@ const styles = StyleSheet.create({
     height: 45,
     borderRadius: 50,
     marginTop: 50,
-    backgroundColor: "black",
+    backgroundColor: `${Colors.main}`,
     justifyContent: "center",
     alignItems: "center",
   },
